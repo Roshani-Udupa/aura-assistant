@@ -5,7 +5,17 @@ pydub
 python-dotenv
 langchain-community
 pypdf
+fastapi
+uvicorn
 python-multipart
 pillow
 streamlit
+pathlib2
+asyncio
+threading
+datetime
+json
+os
+shutil
 google-generativeai
+crewai-tools
