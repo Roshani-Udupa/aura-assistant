@@ -9,7 +9,8 @@ import wave
 from groq import Groq
 import base64
 from dotenv import load_dotenv
-
+import json
+from google.oauth2 import service_account
 # Load environment variables
 load_dotenv()
 
@@ -90,7 +91,16 @@ def transcribe_audio(input_file:str)->str:
         sample_rate_hertz=sample_rate_hertz,
         language_code="en-US",
     )
-    client = speech.SpeechClient.from_service_account_file("gcp_key.json")
+    gcp_json_str = os.environ.get("GCP_KEY_JSON")
+
+    # Convert string to dict
+    gcp_credentials_dict = json.loads(gcp_json_str)
+
+    # Create Credentials object
+    credentials = service_account.Credentials.from_service_account_info(gcp_credentials_dict)
+
+    # Pass credentials to client
+    client = speech.SpeechClient(credentials=credentials)
     # Call Google Speech-to-Text API
     response = client.recognize(config=config, audio=audio)
 
