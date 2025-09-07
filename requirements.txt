@@ -10,12 +10,5 @@ uvicorn
 python-multipart
 pillow
 streamlit
-pathlib2
-asyncio
-threading
-datetime
-json
-os
-shutil
 google-generativeai
 crewai-tools
